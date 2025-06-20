@@ -10,7 +10,7 @@ We take the security of MeterOrm seriously. If you discover a security vulnerabi
 
 Instead:
 
-1. **Send an email** to: [security@meterorm.com](mailto:schev4enko3@icloud.com)
+1. **Send an email** to: [schev4enko3@icloud.com](mailto:schev4enko3@icloud.com)
 2. **Or use GitHub Security Advisories** (if you have access to the repository)
 
 ### What to Include in Your Report
