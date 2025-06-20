@@ -5,6 +5,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5D551CC5-9E01-4E3A-8A25-71C535B9DBED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{1FFCB8A9-571C-40FF-B1A4-03D03608BC90}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{875B3626-8859-47C2-96BC-2B10F2189489}"
 	ProjectSection(SolutionItems) = preProject
