@@ -1,6 +1,7 @@
 using MeterOrm.Dlms.Domain.Entities;
-using MeterOrm.Dlms.Transport;
 using MeterOrm.Core.Accessor;
+using MeterOrm.Core.Transport;
+using MeterOrm.Core.Transport.Tcp;
 using MeterOrm.Dlms.Accessor;
 
 namespace MeterOrm.Dlms.Examples;
@@ -20,10 +21,7 @@ public static class UsageExamples
         // Using custom transport
         var transport = new TcpIpTransport(
             host: "192.168.1.100", 
-            port: 4059,
-            connectionTimeout: TimeSpan.FromSeconds(30),
-            readTimeout: TimeSpan.FromSeconds(30),
-            writeTimeout: TimeSpan.FromSeconds(30)
+            port: 4059
         );
 
         meterContextAccessor.CreateAccessor(

@@ -7,12 +7,17 @@ namespace MeterOrm.Core.Transport;
 /// </summary>
 public abstract class TransportBase : ITransport
 {
+    protected readonly TransportBaseConfiguration TransportBaseConfiguration;
+
+    protected TransportBase(TransportBaseConfiguration? transportBaseConfiguration)
+    {
+        TransportBaseConfiguration = transportBaseConfiguration 
+                                  ?? new TransportBaseConfiguration(null, null, null);
+    }
+    
     protected bool Disposed;
 
     public abstract bool IsConnected { get; }
-    public abstract TimeSpan ConnectionTimeout { get; }
-    public abstract TimeSpan ReadTimeout { get; }
-    public abstract TimeSpan WriteTimeout { get; }
 
     public abstract Task<Result<Unit>> ConnectAsync();
     public abstract Task<Result<Unit>> DisconnectAsync();

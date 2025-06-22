@@ -1,36 +1,26 @@
-using MeterOrm.Core.Common;
 using System.Net.Sockets;
-using MeterOrm.Core.Transport;
+using MeterOrm.Core.Common;
 
-namespace MeterOrm.Dlms.Transport;
+namespace MeterOrm.Core.Transport.Tcp;
 
 /// <summary>
 /// TCP/IP transport implementation for DLMS/COSEM meters
 /// </summary>
-public class TcpIpTransport : TransportBase
+public sealed class TcpIpTransport : TransportBase
 {
     private TcpClient? _tcpClient;
     private NetworkStream? _networkStream;
     private readonly string _host;
     private readonly int _port;
-    private readonly TimeSpan _connectionTimeout;
-    private readonly TimeSpan _readTimeout;
-    private readonly TimeSpan _writeTimeout;
 
-    public TcpIpTransport(string host, int port, TimeSpan? connectionTimeout = null, TimeSpan? readTimeout = null, TimeSpan? writeTimeout = null)
+    public TcpIpTransport(string host, int port = 443, TransportBaseConfiguration? transportBaseConfiguration = null) 
+        : base(transportBaseConfiguration)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         _port = port;
-        _connectionTimeout = connectionTimeout ?? TimeSpan.FromSeconds(30);
-        _readTimeout = readTimeout ?? TimeSpan.FromSeconds(30);
-        _writeTimeout = writeTimeout ?? TimeSpan.FromSeconds(30);
     }
 
     public override bool IsConnected => _tcpClient?.Connected == true;
-
-    public override TimeSpan ConnectionTimeout => _connectionTimeout;
-    public override TimeSpan ReadTimeout => _readTimeout;
-    public override TimeSpan WriteTimeout => _writeTimeout;
 
     public override async Task<Result<Unit>> ConnectAsync()
     {
@@ -40,12 +30,12 @@ public class TcpIpTransport : TransportBase
         {
             _tcpClient = new TcpClient();
             
-            using var cts = new CancellationTokenSource(_connectionTimeout);
+            using var cts = new CancellationTokenSource(TransportBaseConfiguration.ConnectionTimeout);
             await _tcpClient.ConnectAsync(_host, _port, cts.Token);
             
             _networkStream = _tcpClient.GetStream();
-            _networkStream.ReadTimeout = (int)_readTimeout.TotalMilliseconds;
-            _networkStream.WriteTimeout = (int)_writeTimeout.TotalMilliseconds;
+            _networkStream.ReadTimeout = (int)TransportBaseConfiguration.ReadTimeout.TotalMilliseconds;
+            _networkStream.WriteTimeout = (int)TransportBaseConfiguration.WriteTimeout.TotalMilliseconds;
 
             return Result<Unit>.Success(Unit.Value);
         }
@@ -133,7 +123,7 @@ public class TcpIpTransport : TransportBase
         try
         {
             var buffer = new byte[4096];
-            var bytesRead = await _networkStream!.ReadAsync(buffer, 0, buffer.Length);
+            var bytesRead = await _networkStream!.ReadAsync(buffer);
             
             if (bytesRead == 0)
                 return Result<byte[]>.Failure(new Error("CONNECTION_CLOSED", "Connection was closed by the remote host"));

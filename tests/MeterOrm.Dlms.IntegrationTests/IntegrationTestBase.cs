@@ -1,7 +1,8 @@
 using MeterOrm.Core;
 using MeterOrm.Core.Accessor;
+using MeterOrm.Core.Transport;
+using MeterOrm.Core.Transport.Tcp;
 using MeterOrm.Dlms.Examples;
-using MeterOrm.Dlms.Transport;
 
 namespace MeterOrm.Dlms.IntegrationTests;
 
@@ -47,10 +48,7 @@ public abstract class IntegrationTestBase : IDisposable
         // Для демонстрации используем заглушку
         return new TcpIpTransport(
             host: "localhost", // Замените на реальный адрес тестового счетчика
-            port: 4059,
-            connectionTimeout: TimeSpan.FromSeconds(5),
-            readTimeout: TimeSpan.FromSeconds(5),
-            writeTimeout: TimeSpan.FromSeconds(5)
+            port: 4059
         );
     }
 

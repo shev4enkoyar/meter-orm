@@ -36,19 +36,4 @@ public interface ITransport : IDisposable
     /// Receives data from the meter
     /// </summary>
     Task<Result<byte[]>> ReceiveAsync();
-
-    /// <summary>
-    /// Gets the connection timeout
-    /// </summary>
-    TimeSpan ConnectionTimeout { get; }
-
-    /// <summary>
-    /// Gets the read timeout
-    /// </summary>
-    TimeSpan ReadTimeout { get; }
-
-    /// <summary>
-    /// Gets the write timeout
-    /// </summary>
-    TimeSpan WriteTimeout { get; }
 }
