@@ -27,11 +27,11 @@ public class DlmsSpecificMeterContext : DlmsMeterContext
         AddObject(new DlmsClassRegister(LogicalName.Parse("1.0.1.7.0.255"))); // Instantaneous active power
     }
 
-    protected override async Task<Result<Core.Common.Unit>> ExecuteDlmsOperationAsync(IDlmsOperation operation)
+    protected override async Task<Result<Unit>> ExecuteDlmsOperationAsync(IDlmsOperation operation)
     {
         // This is where the actual DLMS communication would happen
         // For now, we'll just simulate success
         await Task.Delay(100); // Simulate network delay
-        return Result<Core.Common.Unit>.Success(Core.Common.Unit.Value);
+        return Result<Unit>.Success(Unit.Value);
     }
 } 

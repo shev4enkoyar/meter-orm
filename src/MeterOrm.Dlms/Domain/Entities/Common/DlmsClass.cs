@@ -1,4 +1,3 @@
-using MeterOrm.Core;
 using MeterOrm.Core.Common;
 using System.Linq.Expressions;
 using MeterOrm.Core.Meter;
@@ -10,8 +9,8 @@ namespace MeterOrm.Dlms.Domain.Entities.Common;
 /// </summary>
 public abstract class DlmsClass : IMeterClass
 {
-    private readonly Dictionary<string, object> _attributes = new();
-    private readonly Dictionary<string, Func<Task<Result<Core.Common.Unit>>>> _pendingMethods = new();
+    private readonly Dictionary<byte, object> _attributes = new();
+    private readonly Dictionary<string, Func<Task<Result<Unit>>>> _pendingMethods = new();
 
     /// <summary>
     /// Gets the logical name of the DLMS object
@@ -36,17 +35,17 @@ public abstract class DlmsClass : IMeterClass
     /// <summary>
     /// Gets an attribute value
     /// </summary>
-    protected T GetAttribute<T>(string attributeName)
+    protected T GetAttribute<T>(byte attributeIndex)
     {
-        return _attributes.TryGetValue(attributeName, out var value) ? (T)value : default!;
+        return _attributes.TryGetValue(attributeIndex, out var value) ? (T)value : default!;
     }
 
     /// <summary>
     /// Sets an attribute value
     /// </summary>
-    protected void SetAttribute<T>(string attributeName, T value)
+    protected void SetAttribute<T>(byte attributeIndex, T value)
     {
-        _attributes[attributeName] = value!;
+        _attributes[attributeIndex] = value!;
     }
 
     /// <summary>
@@ -68,7 +67,7 @@ public abstract class DlmsClass : IMeterClass
     /// <summary>
     /// Adds a method call to the pending operations
     /// </summary>
-    protected void AddMethodCall(string methodName, Func<Task<Result<Core.Common.Unit>>> methodCall)
+    protected void AddMethodCall(string methodName, Func<Task<Result<Unit>>> methodCall)
     {
         _pendingMethods[methodName] = methodCall;
     }
@@ -76,7 +75,7 @@ public abstract class DlmsClass : IMeterClass
     /// <summary>
     /// Gets all pending method calls
     /// </summary>
-    internal IEnumerable<Func<Task<Result<Core.Common.Unit>>>> GetPendingMethods() => _pendingMethods.Values;
+    internal IEnumerable<Func<Task<Result<Unit>>>> GetPendingMethods() => _pendingMethods.Values;
 
     /// <summary>
     /// Clears all pending method calls
