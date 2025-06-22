@@ -1,5 +1,6 @@
 ﻿using MeterOrm.Core;
 using MeterOrm.Core.Common;
+using MeterOrm.Core.Meter;
 using MeterOrm.Dlms.Domain.Entities.Common;
 using MeterOrm.Core.Transport;
 

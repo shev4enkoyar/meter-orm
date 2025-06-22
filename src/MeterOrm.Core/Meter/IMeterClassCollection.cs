@@ -1,6 +1,6 @@
 using MeterOrm.Core.Common;
 
-namespace MeterOrm.Core;
+namespace MeterOrm.Core.Meter;
 
 /// <summary>
 /// Represents a collection of meter classes/objects

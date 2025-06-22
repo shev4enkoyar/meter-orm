@@ -1,6 +1,6 @@
 ﻿using MeterOrm.Core.Common;
 
-namespace MeterOrm.Core;
+namespace MeterOrm.Core.Meter;
 
 /// <summary>
 /// Base context for meter operations

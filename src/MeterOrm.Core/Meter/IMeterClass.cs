@@ -1,4 +1,4 @@
-namespace MeterOrm.Core;
+namespace MeterOrm.Core.Meter;
 
 /// <summary>
 /// Base interface for all meter classes/objects

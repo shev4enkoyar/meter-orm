@@ -1,5 +1,6 @@
 using MeterOrm.Core;
 using MeterOrm.Core.Accessor;
+using MeterOrm.Core.Meter;
 using MeterOrm.Dlms.Accessor;
 using MeterOrm.Dlms.Examples;
 

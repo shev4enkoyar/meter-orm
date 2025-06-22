@@ -1,6 +1,7 @@
 using MeterOrm.Core;
 using MeterOrm.Core.Common;
 using System.Linq.Expressions;
+using MeterOrm.Core.Meter;
 
 namespace MeterOrm.Dlms.Domain.Entities.Common;
 
