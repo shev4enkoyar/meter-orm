@@ -5,9 +5,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5D551CC5-9E01-4E3A-8A25-71C535B9DBED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{1FFCB8A9-571C-40FF-B1A4-03D03608BC90}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{875B3626-8859-47C2-96BC-2B10F2189489}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Core", "src\MeterO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Dlms", "src\MeterOrm.Dlms\MeterOrm.Dlms.csproj", "{A4D6616F-E17C-4A4B-B9A9-1B9C2650B6C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Dlms.IntegrationTests", "tests\MeterOrm.Dlms.IntegrationTests\MeterOrm.Dlms.IntegrationTests.csproj", "{1B95560F-AA82-4DB4-971E-FA763CB6E205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +27,7 @@ Global
 		{875B3626-8859-47C2-96BC-2B10F2189489} = {1FFCB8A9-571C-40FF-B1A4-03D03608BC90}
 		{F51A1261-036E-4CB7-B0CE-1F30FD4E1812} = {B4830A05-18D7-41E3-A885-0A96E3A23C18}
 		{A4D6616F-E17C-4A4B-B9A9-1B9C2650B6C4} = {B4830A05-18D7-41E3-A885-0A96E3A23C18}
+		{1B95560F-AA82-4DB4-971E-FA763CB6E205} = {5D551CC5-9E01-4E3A-8A25-71C535B9DBED}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F51A1261-036E-4CB7-B0CE-1F30FD4E1812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,5 +38,9 @@ Global
 		{A4D6616F-E17C-4A4B-B9A9-1B9C2650B6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4D6616F-E17C-4A4B-B9A9-1B9C2650B6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4D6616F-E17C-4A4B-B9A9-1B9C2650B6C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B95560F-AA82-4DB4-971E-FA763CB6E205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B95560F-AA82-4DB4-971E-FA763CB6E205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B95560F-AA82-4DB4-971E-FA763CB6E205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B95560F-AA82-4DB4-971E-FA763CB6E205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
