@@ -61,9 +61,7 @@ public abstract class IntegrationTestBase : IDisposable
     {
         var transport = CreateTestTransport();
         return new DlmsSpecificMeterContext(
-            transport, 
-            useKeepAlive: true, 
-            keepAlivePeriod: TimeSpan.FromSeconds(2)
+            transport
         );
     }
 

@@ -25,22 +25,6 @@ public class DataOperationsIntegrationTests : IntegrationTestBase
     }
 
     [Fact]
-    public void FirstOrDefault_WithValidLogicalName_ShouldReturnRegister()
-    {
-        // Arrange
-        var meterContext = CreateTestMeterContext();
-        meterContext.Initialize();
-
-        // Act
-        var register = meterContext.Classes.FirstOrDefault<DlmsClassRegister>(x => x.LogicalName == "1.0.1.8.0.255");
-
-        // Assert
-        // В реальных тестах здесь будет проверка на существование регистра
-        // Для демонстрации проверяем, что метод выполнился без исключений
-        Assert.True(true); // Placeholder assertion
-    }
-
-    [Fact]
     public void Where_WithFilter_ShouldReturnFilteredRegisters()
     {
         // Arrange

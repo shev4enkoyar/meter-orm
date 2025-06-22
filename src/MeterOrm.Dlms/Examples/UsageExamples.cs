@@ -28,7 +28,7 @@ public static class UsageExamples
 
         meterContextAccessor.CreateAccessor(
             "UserContextName",
-            new DlmsSpecificMeterContext(transport, true, keepAlivePeriod: TimeSpan.FromSeconds(2)),
+            new DlmsSpecificMeterContext(transport),
             DlmsMeterContextAccessorOptions.Default);
     }
 

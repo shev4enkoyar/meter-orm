@@ -11,14 +11,9 @@ namespace MeterOrm.Dlms.Examples;
 /// </summary>
 public class DlmsSpecificMeterContext : DlmsMeterContext
 {
-    private readonly bool _useKeepAlive;
-    private readonly TimeSpan _keepAlivePeriod;
-
-    public DlmsSpecificMeterContext(ITransport transport, bool useKeepAlive = false, TimeSpan? keepAlivePeriod = null) 
+    public DlmsSpecificMeterContext(ITransport transport) 
         : base(transport)
     {
-        _useKeepAlive = useKeepAlive;
-        _keepAlivePeriod = keepAlivePeriod ?? TimeSpan.FromSeconds(30);
     }
 
     /// <summary>
