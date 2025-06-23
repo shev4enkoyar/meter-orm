@@ -151,11 +151,6 @@ internal class DlmsClassCollection : IMeterClassCollection
         return result != null ? Option<T>.Some(result) : Option<T>.None;
     }
 
-    public IEnumerable<T> Select<T>() where T : class, IMeterClass
-    {
-        return _context.GetObjectsAs<T>();
-    }
-
     public IEnumerable<TResult> Select<T, TResult>(Func<T, TResult> selector) where T : class, IMeterClass
     {
         var objects = _context.GetObjectsAs<T>();
