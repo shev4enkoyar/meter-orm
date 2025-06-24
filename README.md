@@ -1,5 +1,7 @@
 # MeterOrm
 
+> This nuget package under development
+
 A modern ORM like library for meter data management with DLMS/COSEM support.
 
 ## Installation
