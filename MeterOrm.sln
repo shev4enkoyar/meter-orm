@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B364193E-4A9C-4981-A186-F9773A3DA004}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{96B4C957-1833-4225-8CF9-95F3E31AC450}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{73A33AF3-A267-4C09-B88F-84382D33F44B}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		SECURITY.md = SECURITY.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Core", "src\MeterOrm.Core\MeterOrm.Core.csproj", "{A224A8D6-25F8-4907-8603-5D133C1D1092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Dlms", "src\MeterOrm.Dlms\MeterOrm.Dlms.csproj", "{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{3E069744-8F3D-4870-8B7B-BB633EABD54D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\codeql.yml = .github\codeql.yml
+		.github\build.yml = .github\build.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A224A8D6-25F8-4907-8603-5D133C1D1092} = {B364193E-4A9C-4981-A186-F9773A3DA004}
+		{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795} = {B364193E-4A9C-4981-A186-F9773A3DA004}
+		{3E069744-8F3D-4870-8B7B-BB633EABD54D} = {73A33AF3-A267-4C09-B88F-84382D33F44B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A224A8D6-25F8-4907-8603-5D133C1D1092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A224A8D6-25F8-4907-8603-5D133C1D1092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A224A8D6-25F8-4907-8603-5D133C1D1092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A224A8D6-25F8-4907-8603-5D133C1D1092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB14DDFE-E4C8-4F52-B59C-F79EDCECF795}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
