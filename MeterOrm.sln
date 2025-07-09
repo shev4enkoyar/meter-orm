@@ -17,8 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterOrm.Dlms", "src\MeterO
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{3E069744-8F3D-4870-8B7B-BB633EABD54D}"
 	ProjectSection(SolutionItems) = preProject
-		.github\codeql.yml = .github\codeql.yml
-		.github\build.yml = .github\build.yml
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\build.yml = .github\workflows\build.yml
 	EndProjectSection
 EndProject
 Global
