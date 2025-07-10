@@ -1,0 +1,35 @@
+namespace MeterOrm.Dlms.Enums;
+
+public enum DlmsDataType
+{
+    NullData = 0,
+    Array = 1,
+    Structure = 2,
+    Boolean = 3,
+    BitString = 4,
+    DoubleLong = 5,
+    DoubleLongUnsigned = 6,
+    OctetString = 9,
+    VisibleString = 10,
+    Utf8String = 12,
+    Bcd = 13,
+    Integer = 15,
+    Long = 16,
+    Unsigned = 17,
+    LongUnsigned = 18,
+    CompactArray = 19,
+    Long64 = 20,
+    Long64Unsigned = 21,
+    Enum = 22,
+    Float32 = 23,
+    Float64 = 24,
+    DateTime = 25,
+    Date = 26,
+    Time = 27,
+    DeltaInteger = 28,
+    DeltaLong = 29,
+    DeltaDoubleLong = 30,
+    DeltaUnsigned = 31,
+    DeltaLongUnsigned = 32,
+    DeltaDoubleLongUnsigned = 33
+}
