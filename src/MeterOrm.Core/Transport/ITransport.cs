@@ -15,7 +15,7 @@ public interface ITransport : IDisposable
     /// <summary>
     /// Connects to the meter
     /// </summary>
-    Task<Result<Unit>> ConnectAsync();
+    Task<Result<Unit>> ConnectAsync(CancellationToken cancellationToken);
 
     /// <summary>
     /// Disconnects from the meter
@@ -25,15 +25,15 @@ public interface ITransport : IDisposable
     /// <summary>
     /// Sends data to the meter and receives response
     /// </summary>
-    Task<Result<byte[]>> SendReceiveAsync(byte[] data);
+    Task<Result<byte[]>> SendReceiveAsync(byte[] data, CancellationToken cancellationToken);
 
     /// <summary>
     /// Sends data to the meter without expecting response
     /// </summary>
-    Task<Result<Unit>> SendAsync(byte[] data);
+    Task<Result<Unit>> SendAsync(byte[] data, CancellationToken cancellationToken);
 
     /// <summary>
     /// Receives data from the meter
     /// </summary>
-    Task<Result<byte[]>> ReceiveAsync();
+    Task<Result<byte[]>> ReceiveAsync(CancellationToken cancellationToken);
 }

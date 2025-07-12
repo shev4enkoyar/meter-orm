@@ -37,7 +37,7 @@ public class SerialTransport : ITransport
 
     public virtual bool IsConnected => SerialPort?.IsOpen ?? false;
 
-    public virtual async Task<Result<Unit>> ConnectAsync()
+    public virtual async Task<Result<Unit>> ConnectAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -55,7 +55,7 @@ public class SerialTransport : ITransport
                 WriteTimeout = _writeTimeout
             };
 
-            await Task.Run(() => SerialPort.Open());
+            await Task.Run(() => SerialPort.Open(), cancellationToken);
             return Result<Unit>.Success(Unit.Value);
         }
         catch (Exception ex)
@@ -80,17 +80,17 @@ public class SerialTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<byte[]>> SendReceiveAsync(byte[] data)
+    public virtual async Task<Result<byte[]>> SendReceiveAsync(byte[] data, CancellationToken cancellationToken)
     {
         try
         {
             if (!IsConnected)
                 return Result<byte[]>.Failure(new Error("SERIAL_NOT_CONNECTED", "Serial port is not connected"));
 
-            await Task.Run(() => SerialPort!.Write(data, 0, data.Length));
+            await Task.Run(() => SerialPort!.Write(data, 0, data.Length), cancellationToken);
             
             // Read response
-            var response = await ReceiveAsync();
+            var response = await ReceiveAsync(cancellationToken);
             return response;
         }
         catch (Exception ex)
@@ -99,14 +99,14 @@ public class SerialTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<Unit>> SendAsync(byte[] data)
+    public virtual async Task<Result<Unit>> SendAsync(byte[] data, CancellationToken cancellationToken)
     {
         try
         {
             if (!IsConnected)
                 return Result<Unit>.Failure(new Error("SERIAL_NOT_CONNECTED", "Serial port is not connected"));
 
-            await Task.Run(() => SerialPort!.Write(data, 0, data.Length));
+            await Task.Run(() => SerialPort!.Write(data, 0, data.Length), cancellationToken);
             return Result<Unit>.Success(Unit.Value);
         }
         catch (Exception ex)
@@ -115,7 +115,7 @@ public class SerialTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<byte[]>> ReceiveAsync()
+    public virtual async Task<Result<byte[]>> ReceiveAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -123,7 +123,7 @@ public class SerialTransport : ITransport
                 return Result<byte[]>.Failure(new Error("SERIAL_NOT_CONNECTED", "Serial port is not connected"));
 
             var buffer = new byte[1024];
-            var bytesRead = await Task.Run(() => SerialPort!.Read(buffer, 0, buffer.Length));
+            var bytesRead = await Task.Run(() => SerialPort!.Read(buffer, 0, buffer.Length), cancellationToken);
             
             var result = new byte[bytesRead];
             Array.Copy(buffer, result, bytesRead);

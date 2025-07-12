@@ -23,7 +23,7 @@ public class TcpIpTransport : ITransport
 
     public virtual bool IsConnected => TcpClient?.Connected ?? false;
 
-    public virtual async Task<Result<Unit>> ConnectAsync()
+    public virtual async Task<Result<Unit>> ConnectAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -31,7 +31,7 @@ public class TcpIpTransport : ITransport
                 return Result<Unit>.Success(Unit.Value);
 
             TcpClient = new TcpClient();
-            await TcpClient.ConnectAsync(_host, _port);
+            await TcpClient.ConnectAsync(_host, _port, cancellationToken);
             TcpClient.ReceiveTimeout = _timeout;
             TcpClient.SendTimeout = _timeout;
             
@@ -60,15 +60,15 @@ public class TcpIpTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<byte[]>> SendReceiveAsync(byte[] data)
+    public virtual async Task<Result<byte[]>> SendReceiveAsync(byte[] data, CancellationToken cancellationToken)
     {
         try
         {
             if (!IsConnected)
                 return Result<byte[]>.Failure(new Error("TCP_NOT_CONNECTED", "TCP client is not connected"));
 
-            await SendAsync(data);
-            return await ReceiveAsync();
+            await SendAsync(data, cancellationToken);
+            return await ReceiveAsync(cancellationToken);
         }
         catch (Exception ex)
         {
@@ -76,15 +76,15 @@ public class TcpIpTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<Unit>> SendAsync(byte[] data)
+    public virtual async Task<Result<Unit>> SendAsync(byte[] data, CancellationToken cancellationToken)
     {
         try
         {
             if (!IsConnected)
                 return Result<Unit>.Failure(new Error("TCP_NOT_CONNECTED", "TCP client is not connected"));
 
-            await NetworkStream!.WriteAsync(data, 0, data.Length);
-            await NetworkStream.FlushAsync();
+            await NetworkStream!.WriteAsync(data, 0, data.Length, cancellationToken);
+            await NetworkStream.FlushAsync(cancellationToken);
             return Result<Unit>.Success(Unit.Value);
         }
         catch (Exception ex)
@@ -93,7 +93,7 @@ public class TcpIpTransport : ITransport
         }
     }
 
-    public virtual async Task<Result<byte[]>> ReceiveAsync()
+    public virtual async Task<Result<byte[]>> ReceiveAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -101,7 +101,7 @@ public class TcpIpTransport : ITransport
                 return Result<byte[]>.Failure(new Error("TCP_NOT_CONNECTED", "TCP client is not connected"));
 
             var buffer = new byte[4096];
-            var bytesRead = await NetworkStream!.ReadAsync(buffer, 0, buffer.Length);
+            var bytesRead = await NetworkStream!.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
             
             if (bytesRead == 0)
                 return Result<byte[]>.Failure(new Error("TCP_CONNECTION_CLOSED", "Connection closed by remote host"));
