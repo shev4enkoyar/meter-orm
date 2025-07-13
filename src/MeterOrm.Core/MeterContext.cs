@@ -6,19 +6,16 @@ namespace MeterOrm.Core;
 public abstract class MeterContext : IDisposable
 {
     private readonly ITransport _transport;
-    
-    protected MeterContext(ITransport transport)
+    private readonly IMeterContextParameterModel _parameter;
+
+    protected MeterContext(ITransport transport, IMeterContextParameterModel parameter)
     {
         _transport = transport;
+        _parameter = parameter;
     }
     
     protected ITransport Transport => _transport;
     
-    public async Task<Result<Unit>> SendRaw(byte[] data)
-    {
-        return await Transport.SendAsync(data);
-    }
-
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)
@@ -32,4 +29,9 @@ public abstract class MeterContext : IDisposable
         Dispose(true);
         GC.SuppressFinalize(this);
     }
+}
+
+public interface IMeterContextParameterModel
+{
+    Result<Unit> Validate();
 }
